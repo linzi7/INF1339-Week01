@@ -1,6 +1,6 @@
 <html>
     <head>
-        <title>Version 6</title>
+        <title>Version 7</title>
         <style>
             .standardTable{border: solid;
                            border-collapse: collapse;}
@@ -16,10 +16,26 @@
             function display(input_number) {
                 // display the inputNumber as <p> element
                 document.getElementById("decimal_input").innerHTML=input_number
+                
                 // change decimal into binary
                 var binary_number = decimalToBinary(input_number)
-                // display the binary number
-                document.getElementById("binary_output").innerHTML=binary_number      
+                
+                // display the binary number in both box
+                document.getElementById("binary_output").innerHTML=binary_number
+                document.getElementById("binary2ssd_input").innerHTML=binary_number
+                
+                // change binary into ssd
+                var ssd = binaryToSsd(binary_number)
+                
+                // display the ssd in both box
+                document.getElementById("binary2ssd_output").innerHTML=ssd
+                document.getElementById("Illuminate_input").innerHTML=ssd
+                
+                // change ssd into actual light
+                illuminate(ssd)
+                
+                // display dane information
+                document.getElementById("Illuminate_output").innerHTML='done'
             }
             
             function decimalToBinary(decimal_number) {
@@ -28,10 +44,19 @@
                                       "1000", "1001"]
                 return (binary_numbers[decimal_number])
             }
+            
+            function binaryToSsd(binary_number) {
+                
+                return ('1000000')
+            }
+            
+            function illuminate(ssd) {
+                
+            }
         </script>
     </head>
     <body>
-        <h3>Version 6: Adding Decimal to binary Conversion</h3>
+        <h3>Version 7: Stubs for Parts 3 and 4</h3>
         <table class="standardTable">
             <tr>
                 <td class="blackBox"> 
@@ -52,8 +77,16 @@
                     <p id="decimal_input">???</p>
                     <p id="binary_output">???</p>
                 </td>
-                <td class="blackBox"> Binary to SSD Signals </td>
-                <td class="blackBox"> Illuminate Segment </td>
+                <td class="blackBox"> 
+                    <h3>Binary to SSD Signal</h3>
+                    <p id="binary2ssd_input">???</p>
+                    <p id="binary2ssd_output">???</p>
+                </td>
+                <td class="blackBox"> 
+                    <h3>Illuminate Segment</h3>
+                    <p id="Illuminate_input">???</p>
+                    <p id="Illuminate_output">???</p>
+                </td>
             </tr>
         </table>
     </body>
