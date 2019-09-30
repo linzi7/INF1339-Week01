@@ -1,0 +1,107 @@
+<html>
+    <head>
+        <title>Version 8</title>
+        <style>
+            .standardTable{border: solid;
+                           border-collapse: collapse;}
+            .blackBox{border: solid;
+                      height: 100px;
+                      width: 100px;
+                      text-align: center;
+                      background-color: black;
+                      border-color: white;
+                      color: yellow;}
+        </style>
+        <script>
+            function display(input_number) {
+                // display the inputNumber as <p> element
+                document.getElementById("decimal_input").innerHTML=input_number
+                
+                // change decimal into binary
+                var binary_number = decimalToBinary(input_number)
+                
+                // display the binary number in both box
+                document.getElementById("binary_output").innerHTML=binary_number
+                document.getElementById("binary2ssd_input").innerHTML=binary_number
+                
+                // change binary into ssd
+                var ssd = binaryToSsd(binary_number)
+                
+                // display the ssd in both box
+                document.getElementById("binary2ssd_output").innerHTML=ssd
+                document.getElementById("Illuminate_input").innerHTML=ssd
+                
+                // change ssd into actual light
+                illuminate(ssd)
+                
+                // display dane information
+                document.getElementById("Illuminate_output").innerHTML='done'
+            }
+            
+            function decimalToBinary(decimal_number) {
+                var binary_numbers = ["0000", "0001", "0010", "0011", 
+                                      "0100", "0101", "0110", "0111",
+                                      "1000", "1001"]
+                return (binary_numbers[decimal_number])
+            }
+            
+            function binaryToSsd(binary_number) {             
+                // return ('1000000')
+                // use short cut for now
+                return shortCut(binary_number)
+            }
+            
+            function illuminate(ssd) {
+                
+            }
+            
+            function shortCut(binary_number) {
+                var binary_numbers = ["0000", "0001", "0010", "0011", 
+                                      "0100", "0101", "0110", "0111",
+                                      "1000", "1001"]
+                var decimal = binary_numbers.indexOf(binary_number)
+                var ssd_signals = ["0000000", "0110000", "1101101", "1111001", 
+                                   "0110011", "1011011", "1011111", "1110000",
+                                   "1111111", "1111011"]
+                var result = ssd_signals[decimal]
+                return result
+            }
+        </script>
+    </head>
+    <body>
+        <h3>Version 8: Adding BIN2SSD Functionality</h3>
+        <table class="standardTable">
+            <tr>
+                <td class="blackBox"> 
+                    <h3>KeyPad</h3>
+                    <button type="button" onclick="display(1)">1</button>
+                    <button type="button" onclick="display(2)">2</button>
+                    <button type="button" onclick="display(3)">3</button>
+                    <button type="button" onclick="display(4)">4</button>
+                    <button type="button" onclick="display(5)">5</button>
+                    <button type="button" onclick="display(6)">6</button>
+                    <button type="button" onclick="display(7)">7</button>
+                    <button type="button" onclick="display(8)">8</button>
+                    <button type="button" onclick="display(9)">9</button>
+                    <button type="button" onclick="display(0)">0</button>
+                </td>
+                <td class="blackBox"> 
+                    <h3>Decimal to Binary</h3> 
+                    <p id="decimal_input">???</p>
+                    <p id="binary_output">???</p>
+                </td>
+                <td class="blackBox"> 
+                    <h3>Binary to SSD Signal</h3>
+                    <p id="binary2ssd_input">???</p>
+                    <p id="binary2ssd_output">???</p>
+                </td>
+                <td class="blackBox"> 
+                    <h3>Illuminate Segment</h3>
+                    <p id="Illuminate_input">???</p>
+                    <p id="Illuminate_output">???</p>
+                </td>
+            </tr>
+        </table>
+    </body>
+</html>
+
