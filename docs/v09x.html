@@ -1,0 +1,182 @@
+<html>
+    <head>
+        <title>Version 9x</title>
+        <style>
+            .standardTable{border: solid;
+                           border-collapse: collapse;}
+            
+            .blackBox{border: solid;
+                      height: 100px;
+                      width: 100px;
+                      text-align: center;
+                      background-color: black;
+                      border-color: white;
+                      color: yellow;}
+            
+            .sevenSegmentTable {color: white; 
+                                border-color: white;
+                                border: solid;
+                                border-collapse: collapse;}
+            
+            .notsevenSegmentTable {border: none;}
+            
+            .horizontal {width: 40px; height: 10px;}
+            
+            .vertical {width: 10px; height: 40px;}
+            
+            .corner {width: 10px; height: 10px;}
+            
+            .middle {width: 40px; height: 40px;}
+            
+            .red {background-color: red;}
+            
+            .black {background-color: black;}
+        </style>
+        <script>
+            function display(input_number) {
+                // display the inputNumber as <p> element
+                document.getElementById("decimal_input").innerHTML=input_number
+                
+                // change decimal into binary
+                var binary_number = decimalToBinary(input_number)
+                
+                // display the binary number in both box
+                document.getElementById("binary_output").innerHTML=binary_number
+                document.getElementById("binary2ssd_input").innerHTML=binary_number
+                // change binary into ssd
+                var ssd = binaryToSsd(binary_number)
+                // display the ssd in both box
+                illuminate(ssd)
+                //document.getElementById("segments").innerHTML=ssd
+                document.getElementById("binary2ssd_output").innerHTML=ssd
+                document.getElementById("Illuminate_input").innerHTML=ssd
+
+            }
+            
+            function decimalToBinary(decimal_number) {
+                var binary_numbers = ["0000", "0001", "0010", "0011", 
+                                      "0100", "0101", "0110", "0111",
+                                      "1000", "1001"]
+                return (binary_numbers[decimal_number])
+            }
+            
+            function binaryToSsd(binary_number) {             
+                return shortCut(binary_number)
+            }
+            
+            function shortCut(binary_number) {
+                var binary_numbers = ["0000", "0001", "0010", "0011", 
+                                      "0100", "0101", "0110", "0111",
+                                      "1000", "1001"]
+                var decimal = binary_numbers.indexOf(binary_number)
+                var ssd_signals = ["0000000", "0110000", "1101101", "1111001", 
+                                   "0110011", "1011011", "1011111", "1110000",
+                                   "1111111", "1111011"]
+                var result = ssd_signals[decimal]
+                return result
+            }
+            
+            function illuminate(ssd) {
+                document.getElementById("segments").innerHTML=ssd
+                if (ssd[0] == '1') {
+                    document.getElementById("segmentA").innerHTML='ON'
+                    document.getElementById("segmentA").setAttribute("class", "red")}
+                else {document.getElementById("segmentA").innerHTML = 'OFF'
+                      document.getElementById("segmentA").setAttribute("class", "black")}
+                if (ssd[1] == '1') {
+                    document.getElementById("segmentB").innerHTML = 'ON'
+                    document.getElementById("segmentB").setAttribute("class", "red")}
+                else {document.getElementById("segmentB").innerHTML = 'OFF'
+                      document.getElementById("segmentB").setAttribute("class", "black")}
+                if (ssd[2] == '1') {
+                    document.getElementById("segmentC").innerHTML = 'ON'
+                    document.getElementById("segmentC").setAttribute("class", "red")}
+                else {document.getElementById("segmentC").innerHTML = 'OFF'
+                      document.getElementById("segmentC").setAttribute("class", "black")}
+                if (ssd[3] == '1') {
+                    document.getElementById("segmentD").innerHTML = 'ON'
+                    document.getElementById("segmentD").setAttribute("class", "red")}
+                else {document.getElementById("segmentD").innerHTML = 'OFF'
+                      document.getElementById("segmentD").setAttribute("class", "black")}
+                if (ssd[4] == '1') {
+                    document.getElementById("segmentE").innerHTML = 'ON'
+                    document.getElementById("segmentE").setAttribute("class", "red")}
+                else {document.getElementById("segmentE").innerHTML = 'OFF'
+                      document.getElementById("segmentE").setAttribute("class", "black")}
+                if (ssd[5] == '1') {
+                    document.getElementById("segmentF").innerHTML = 'ON'
+                    document.getElementById("segmentF").setAttribute("class", "red")}
+                else {document.getElementById("segmentF").innerHTML = 'OFF'
+                      document.getElementById("segmentF").setAttribute("class", "black")}
+                if (ssd[6] == '1') {
+                    document.getElementById("segmentG").innerHTML = 'ON'
+                    document.getElementById("segmentG").setAttribute("class", "red")}
+                else {document.getElementById("segmentG").innerHTML = 'OFF'
+                      document.getElementById("segmentG").setAttribute("class", "black")}
+            }
+            
+        </script>
+    </head>
+    <body>
+        <h3>Version 9x: Final Version</h3>
+        <table class="standardTable">
+            <tr>
+                <td class="blackBox"> 
+                    <h3>KeyPad</h3>
+                    <button type="button" onclick="display(1)">1</button>
+                    <button type="button" onclick="display(2)">2</button>
+                    <button type="button" onclick="display(3)">3</button>
+                    <button type="button" onclick="display(4)">4</button>
+                    <button type="button" onclick="display(5)">5</button>
+                    <button type="button" onclick="display(6)">6</button>
+                    <button type="button" onclick="display(7)">7</button>
+                    <button type="button" onclick="display(8)">8</button>
+                    <button type="button" onclick="display(9)">9</button>
+                    <button type="button" onclick="display(0)">0</button>
+                </td>
+                <td class="blackBox"> 
+                    <h3>Decimal to Binary</h3> 
+                    <p id="decimal_input">???</p>
+                    <p id="binary_output">???</p>
+                </td>
+                <td class="blackBox"> 
+                    <h3>Binary to SSD Signal</h3>
+                    <p id="binary2ssd_input">???</p>
+                    <p id="binary2ssd_output">???</p>
+                </td>
+                <td class="blackBox">
+                    <h3>Illuminate Segment</h3>
+                    <p id="segments">???</p>
+                    <table>
+                        <tr>
+                            <td class="notsevenSegmentTable corner">???</td>
+                            <td id="segmentA" class="sevenSegmentTable horizontal">A</td>
+                            <td class="notsevenSegmentTable corner">???</td>
+                        </tr>
+                        <tr>
+                            <td id="segmentF" class="sevenSegmentTable vertical">F</td>
+                            <td class="notsevenSegmentTable middle">???</td>
+                            <td id="segmentB" class="sevenSegmentTable vertical">B</td>
+                        </tr>
+                        <tr>
+                            <td class="notsevenSegmentTable corner">???</td>
+                            <td id="segmentG" class="sevenSegmentTable horizontal">G</td>
+                            <td class="notsevenSegmentTable corner">???</td>
+                        </tr>
+                        <tr>
+                            <td id="segmentE" class="sevenSegmentTable vertical">E</td>
+                            <td class="notsevenSegmentTable middle">???</td>
+                            <td id="segmentC" class="sevenSegmentTable vertical">C</td>
+                        </tr>
+                        <tr>
+                            <td class="notsevenSegmentTable corner">???</td>
+                            <td id="segmentD" class="sevenSegmentTable horizontal">D</td>
+                            <td class="notsevenSegmentTable corner">???</td>
+                        </tr>
+                    </table>
+                </td>
+            </tr>
+        </table>
+    </body>
+</html>
+
